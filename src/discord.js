@@ -12,6 +12,14 @@ const openings = [
   "Beep! Boop! Time to ink!",
 ];
 
+const challenges = [
+  "Challenge 1",
+  "Challenge 2",
+  "Challenge 3",
+  "Challenge 4",
+  "Challenge 5",
+];
+
 const topics = {
   1: "fish",
   2: "wisp",
@@ -57,7 +65,7 @@ const finishings = [
 function constructMessage() {
   const opening = selectRandomFrom(openings);
   const date = getDate();
-  const theme = topics[today.getDate()];
+  const theme = cselectRandomFrom(challenges);
   const closing = selectRandomFrom(finishings);
   return `${opening} It is the ${date} of Inktober and today's theme is **${theme}**. ${closing}`;
 }
