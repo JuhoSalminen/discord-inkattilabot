@@ -65,7 +65,7 @@ const finishings = [
 function constructMessage() {
   const opening = selectRandomFrom(openings);
   const date = getDate();
-  const theme = cselectRandomFrom(challenges);
+  const theme = selectRandomFrom(challenges);
   const closing = selectRandomFrom(finishings);
   return `${opening} It is the ${date} of Inktober and today's theme is **${theme}**. ${closing}`;
 }
