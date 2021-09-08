@@ -83,7 +83,7 @@ function getAndRemoveTheme() {
   topic = themes[chooser];
   themes.splice(chooser, 1);
   oldThemes.push(topic);
-  return `$(topic)`;
+  return topic;
 }
 
 function getWeekNumber(d) {
