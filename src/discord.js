@@ -3,11 +3,11 @@ require("dotenv").config();
 const axios = require("axios");
 
 const openings = [
-  "Well, hello there!",
-  "Greetings, Earthlings!",
-  "Pens at the ready!",
-  "Hope you're ready for some inking!",
-  "Beep! Boop! Time to ink!",
+  "Hyvää maanantaita kaikille.",
+  "Miau!",
+  "On taas aika luoda uutta!",
+  "_Tassuttelee piirtonäytön päälle_",
+  "Ink-attihaasteen aika!",
 ];
 
 const themes = [
@@ -17,11 +17,6 @@ const themes = [
   "Challenge 4",
   "Challenge 5",
 ];
-
-const oldThemes = [
-  
-];
-
 
 const topics = {
   1: "fish",
@@ -58,17 +53,17 @@ const topics = {
 };
 
 const finishings = [
-  "Hope you'll share your creations here.",
-  "Draw on inkers!",
-  "The journey is as important as the destination.",
-  "There is no competition - show us what you made.",
-  "1... 2... 3... Ink!",
+  "Muista postata tekeleesi tänne!",
+  "Eikä turhaa stressiä!",
+  "Muista pitää hauskaa.",
+  "Tämä ei ole kisa, vaan yhteistä kivaa.",
+  "1... 2... 3... Piirräpiirräpiirrä!",
 ];
 
 function constructMessage() {
   const opening = selectRandomFrom(openings);
   const date = getWeekNumber(new Date());
-  const theme = getAndRemoveTheme();
+  const theme = getAndRemoveTheme(themes);
   const closing = selectRandomFrom(finishings);
   return `${opening} On vuoden ${date}. viikko. Ink-attiteema tällä viikolla on **${theme}**. ${closing}`;
 }
@@ -77,12 +72,11 @@ function selectRandomFrom(selection) {
   return selection[Math.floor(Math.random() * selection.length)];
 }
 
-function getAndRemoveTheme() {
-  let topic;
-  let chooser = (Math.random()*themes.length);
-  topic = themes[chooser];
-  themes.splice(chooser, 1);
-  oldThemes.push(topic);
+function getAndRemoveTheme(selection) {
+  var topic;
+  let chooser = (Math.random()*selection.length);
+  topic = selection[chooser];
+  selection.splice(chooser, 1);
   return topic;
 }
 
@@ -96,8 +90,8 @@ function getWeekNumber(d) {
     var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
     // Calculate full weeks to nearest Thursday
     var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
-    // Return array of year and week number
-    return [d.getUTCFullYear(), weekNo];
+    // Return week number
+    return weekNo;
 }
 
 exports.handler = (event, context, callback) => {
