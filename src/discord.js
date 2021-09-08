@@ -2,8 +2,6 @@ require("dotenv").config();
 
 const axios = require("axios");
 
-const today = new Date();
-
 const openings = [
   "Well, hello there!",
   "Greetings, Earthlings!",
@@ -12,13 +10,18 @@ const openings = [
   "Beep! Boop! Time to ink!",
 ];
 
-const challenges = [
+const themes = [
   "Challenge 1",
   "Challenge 2",
   "Challenge 3",
   "Challenge 4",
   "Challenge 5",
 ];
+
+const oldThemes = [
+  
+];
+
 
 const topics = {
   1: "fish",
@@ -64,39 +67,37 @@ const finishings = [
 
 function constructMessage() {
   const opening = selectRandomFrom(openings);
-  const date = getDate();
-  const theme = selectRandomFrom(challenges);
+  const date = Date.GetWeek();
+  const theme = getAndRemoveTheme();
   const closing = selectRandomFrom(finishings);
-  return `${opening} It is the ${date} of Inktober and today's theme is **${theme}**. ${closing}`;
+  return `${opening} On vuoden ${date}. viikko. Ink-attiteema tällä viikolla on **${theme}**. ${closing}`;
 }
 
 function selectRandomFrom(selection) {
   return selection[Math.floor(Math.random() * selection.length)];
 }
 
-function getDate() {
-  const day = today.getDate();
-  let ending;
-  switch (day) {
-    case 1:
-    case 21:
-    case 31:
-      ending = "st";
-      break;
-    case 2:
-    case 22:
-      ending = "nd";
-      break;
-    case 3:
-    case 23:
-      ending = "rd";
-      break;
-    default:
-      ending = "th";
-  }
-
-  return `${day}${ending}`;
+function getAndRemoveTheme() {
+  let topic;
+  let chooser = (Math.random()*themes.length);
+  topic = themes[chooser];
+  themes.splice(chooser, 1);
+  oldThemes.push(topic);
+  return `$(topic)`;
 }
+
+Date.prototype.getWeek = function() {
+  var date = new Date(this.getTime());
+  date.setHours(0, 0, 0, 0);
+  // Thursday in current week decides the year.
+  date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+  // January 4 is always in week 1.
+  var week1 = new Date(date.getFullYear(), 0, 4);
+  // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+  return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
+                        - 3 + (week1.getDay() + 6) % 7) / 7);
+}
+
 exports.handler = (event, context, callback) => {
   const params = {
     username: process.env.BOT_NAME,
