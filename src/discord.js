@@ -74,7 +74,7 @@ function selectRandomFrom(selection) {
 
 function getAndRemoveTheme(selection) {
   var topic;
-  let chooser = (Math.random()*selection.length);
+  let chooser = [Math.floor(Math.random() * selection.length)];
   topic = selection[chooser];
   selection.splice(chooser, 1);
   return topic;
