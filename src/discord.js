@@ -54,7 +54,7 @@ const finishings = [
   "Nähdään ensi maanantaina!",
   "Tämä ei ole kisa, vaan yhteistä kivaa.",
   "1... 2... 3... Piirräpiirräpiirrä!",
-  "Muista myös käydä lisäämässä omat aihe-ehdotuksesi listaan! https://forms.gle/nHbaEZ19uNzAPwex6".
+  "Muista myös käydä lisäämässä omat aihe-ehdotuksesi listaan! https://forms.gle/nHbaEZ19uNzAPwex6",
   "2D, 3D, traditionaalinen tai moderni: tekotapa vapaa!",
 ];
 
