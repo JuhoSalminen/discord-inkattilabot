@@ -33,7 +33,7 @@ const themes = [
 "Kattila Royale",
 "Katit laiturilla",
 "Mehukatti",
-"#mattimaksaa	",
+"#mattimaksaa",
 "Kattila-kissa",
 "Aamiainen",
 "Viimeisin pelaamasi peli",
